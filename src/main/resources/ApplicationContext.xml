@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd"
+       default-autowire="byName">
+
+    <context:property-placeholder location="classpath:config.properties"/>
+
+    <context:annotation-config />
+    <context:component-scan base-package="com"/>
+    <!-- 开启事务注解驱动 -->
+    <tx:annotation-driven/>
+
+    <bean id="dbSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:SqlMapConfig.xml"/>
+        <property name="mapperLocations" value="classpath*:mapper/*.xml" />
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- scan for mappers and let them be autowired -->
+    <!-- 该配置前提 保证SqlSessionFactoryBean不为默认的sqlSessionFactory 否则会提前初始化导致properties无法替换-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.dao.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="dbSessionFactory"/>
+    </bean>
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.druid.driver-class}" />
+        <property name="url" value="${jdbc.druid.driver-url}" />
+        <property name="username" value="${jdbc.user}" />
+        <property name="password" value="${jdbc.password}" />
+        <property name="initialSize" value="${jdbc.druid.connection-initial-size}" />
+        <property name="minIdle" value="${jdbc.druid.connection-minimum-size}" />
+        <property name="maxActive" value="${jdbc.druid.connection-maximum-size}" />
+        <property name="maxWait" value="${jdbc.druid.connection-maxwait-time}" />
+        <property name="timeBetweenEvictionRunsMillis" value="${jdbc.druid.connection-maxactive-time}" />
+        <property name="minEvictableIdleTimeMillis" value="${jdbc.druid.connection-minlive-time}" />
+        <property name="validationQuery" value="${jdbc.druid.connection-test-sql}" />
+        <property name="testWhileIdle" value="${jdbc.druid.test-while-idle}" />
+        <property name="testOnBorrow" value="${jdbc.druid.test-on-borrow}" />
+        <property name="testOnReturn" value="${jdbc.druid.test-on-return}" />
+        <property name="poolPreparedStatements" value="${jdbc.druid.pool-prepared-statements}" />
+        <property name="connectionProperties" value="config.decrypt=${jdbc.druid.config.decrypt}" />
+        <property name="filters" value="mergeStat,config" />
+    </bean>
+
+    <mvc:resources mapping="/**" location="/img/" />
+
+    <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">-->
+        <!--<property name="cache" value="true"/>-->
+        <!--<property name="prefix" value="/"/>-->
+        <!--<property name="suffix" value=".vm"/>-->
+        <!--<property name="contentType" value="text/html;charset=UTF-8" />-->
+        <!--<property name="dateToolAttribute" value="dateTool" />-->
+    <!--</bean>-->
+
+    <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">-->
+        <!--<property name="supportedMediaTypes">-->
+            <!--<list>-->
+                <!--<value>text/plain;charset=UTF-8</value>-->
+                <!--<value>text/html;charset=UTF-8</value>-->
+                <!--<value>text/json;charset=UTF-8</value>-->
+                <!--<value>application/json;charset=UTF-8</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>text/json;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--<mvc:default-servlet-handler/>-->
+</beans>

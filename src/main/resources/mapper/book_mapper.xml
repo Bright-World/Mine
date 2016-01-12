@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.mapper.BookMapper">
+    <resultMap id="bookMapper" type="com.entity.Book">
+        <id column="book_id" property="bookId"/>
+        <result column="name" property="name"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="author" property="author" typeHandler="com.dao.typeHandler.JsonListHandler"/>
+        <result column="publisher" property="publisher"/>
+        <result column="isbn" property="isbn"/>
+        <result column="pub_date" property="pubDate"/>
+        <result column="desc" property="desc"/>
+        <result column="price" property="price"/>
+        <result column="times" property="times"/>
+        <result column="pic" property="pic" typeHandler="com.dao.typeHandler.JsonListHandler"/>
+        <result column="create_date" property="createDate"/>
+        <result column="modified_date" property="modifiedDate"/>
+    </resultMap>
+
+    <update id="updateBook" parameterType="com.entity.Book">
+        update book
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="categoryId != null">
+                category_id = #{categoryId},
+            </if>
+            <if test="author != null">
+                author = #{author,typeHandler=com.dao.typeHandler.JsonListHandler},
+            </if>
+            <if test="publisher != null">
+                publisher = #{publisher},
+            </if>
+            <if test="isbn != null">
+                isbn = #{isbn},
+            </if>
+            <if test="pubDate != null">
+                pub_date = #{pubDate},
+            </if>
+            <if test="desc != null">
+                `desc` = #{desc},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="pic != null">
+                pic = #{pic, typeHandler=com.dao.typeHandler.JsonListHandler},
+            </if>
+            modified_date = now()
+        </set>
+        where book_id = #{bookId}
+    </update>
+</mapper>

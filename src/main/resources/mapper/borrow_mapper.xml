@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper>
+    <resultMap id="borrowMap" type="com.entity.Borrow">
+        <id column="borrow_id" property="borrowId"/>
+        <result column="user_id" property="userId"/>
+        <result column="book_id" property="bookId"/>
+        <result column="return_time" property="returnTime"/>
+        <result column="is_renew" property="isRenew"/>
+        <result column="status" property="status"/>
+        <result column="create_date" property="createDate"/>
+        <result column="modified_date" property="modifiedDate"/>
+    </resultMap>
+
+    <!--<update id="updateBorrow" parameterType="com.entity.Borrow">
+        update borrow
+        <set>
+            <if test=""
+        </set>
+    </update>-->
+</mapper>
