@@ -83,8 +83,8 @@
       <file leaf-file-name="category_mapper.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/category_mapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17622377" vertical-offset="0" max-vertical-offset="715">
-              <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.2013986" vertical-offset="0" max-vertical-offset="715">
+              <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -1105,12 +1105,12 @@
       <workItem from="1452515303289" duration="3472000" />
       <workItem from="1452524488283" duration="4949000" />
       <workItem from="1452576218680" duration="5139000" />
-      <workItem from="1452594413292" duration="634000" />
+      <workItem from="1452594413292" duration="1269000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74084000" />
+    <option name="totallyTimeSpent" value="74719000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -1568,8 +1568,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/category_mapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17622377" vertical-offset="0" max-vertical-offset="715">
-          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.2013986" vertical-offset="0" max-vertical-offset="715">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
           <folding />
         </state>
       </provider>
