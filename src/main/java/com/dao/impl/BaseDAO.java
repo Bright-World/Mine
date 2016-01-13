@@ -19,5 +19,5 @@ public abstract class BaseDAO {
         return sequenceMapper.getSequence(getTableName());
     }
 
-    protected abstract String getTableName();
+    abstract String getTableName();
 }
