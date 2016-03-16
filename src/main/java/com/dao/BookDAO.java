@@ -19,5 +19,7 @@ public interface BookDAO {
 
     public Book getBookById(Long bookId);
 
-    public Integer incrBorrowNum(Long bookId, Integer num);
+    public Long incrTimes(Long bookId);
+
+    public Long delBook(Long bookId);
 }

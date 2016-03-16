@@ -4,6 +4,7 @@ import com.dao.CategoryDAO;
 import com.dao.mapper.CategoryMapper;
 import com.entity.Category;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -23,6 +24,7 @@ public class CategoryDAOImpl extends BaseDAO implements CategoryDAO {
     }
 
     @Override
+    @Transactional
     public Long addCategory(Category category) {
         category.setCategoryId(getSequence());
         return categoryMapper.addCategory(category) == 0 ? 0l : category.getCategoryId();

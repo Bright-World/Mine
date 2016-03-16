@@ -34,6 +34,11 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
     }
 
     @Override
+    public Long updateUser(String nick, Long userId) {
+        return userMapper.updateUser(nick, userId) == 0 ? 0l : userId;
+    }
+
+    @Override
     public Long addUserInfo(UserInfo userInfo) {
         return userMapper.addUserInfo(userInfo) == 0 ? 0l : userInfo.getUserId();
     }
@@ -46,6 +51,11 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
     @Override
     public String getUserByEmail(String email) {
         return userMapper.getUserByEmail(email);
+    }
+
+    @Override
+    public User getUserById(Long userId) {
+        return userMapper.getUserById(userId);
     }
 
     @Override

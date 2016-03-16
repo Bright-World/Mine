@@ -12,12 +12,16 @@ public interface BorrowMapper {
 
     final static  String COLUMN_ALL = "borrow_id,user_id,book_id,create_date,modified_date";
 
-    @Insert("insert into borrow(" + COLUMN_ALL + ") values(#{borrowId}, #{userId}, #{bookId}, now(), now())")
+    @Insert("insert into borrow(" + COLUMN_ALL + ") values(#{borrowId}, #{userId}, #{bookIds, typeHandler = com.dao.typeHandler.JsonLongListHandler}, now(), now())")
     int addBorrow(Borrow borrow);
 
     @Select("select * from borrow order by modified_date desc limit #{cursor}, #{offset}")
     @ResultMap("borrowMap")
     List<Borrow> getBorrows(@Param("cursor")Integer cursor, @Param("offset")Integer offset);
+
+    @Select("select * from borrow where borrow_id = #{borrowId}")
+    @ResultMap("borrowMap")
+    Borrow getBorrowById(Long borrowId);
 
     @Select("select * from borrow where user_id = #{userId} order by modified_date desc limit #{cursor}, #{offset}")
     @ResultMap("borrowMap")

@@ -56,7 +56,7 @@
         <property name="filters" value="mergeStat,config" />
     </bean>
 
-    <mvc:resources mapping="/**" location="/img/" />
+    <mvc:resources mapping="/**" location="/web/" />
 
     <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">-->
         <!--<property name="cache" value="true"/>-->

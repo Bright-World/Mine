@@ -1,23 +1,23 @@
-package com.entity;
+package com.response;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by ZhenXi on 2016/1/11.
+ * Created by ZhenXi on 2016/1/14.
  */
-public class UserInfo {
+public class UserInfoResponse implements Serializable {
+
     private Long userId;
 
-    //姓名
+    private String email;
+
     private String name;
 
-    //个性签名
     private String desc;
 
-    //生日
     private Date birthday;
 
-    //借书数量
     private Integer borrowNum;
 
     private Date createDate;
@@ -30,6 +30,14 @@ public class UserInfo {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {

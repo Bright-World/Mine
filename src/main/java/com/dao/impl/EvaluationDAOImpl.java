@@ -25,7 +25,7 @@ public class EvaluationDAOImpl extends BaseDAO implements EvaluationDAO {
     @Override
     public Long addEvaluation(Evaluation evaluation) {
         evaluation.setEvaluationId(getSequence());
-        return evaluationMapper.addEvaluation(evaluation) == 0 ? 0l : evaluation.getUserId();
+        return evaluationMapper.addEvaluation(evaluation) == 0 ? 0l : evaluation.getEvaluationId();
     }
 
     @Override

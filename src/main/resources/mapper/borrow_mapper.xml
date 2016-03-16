@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="com.dao.mapper.BorrowMapper">
     <resultMap id="borrowMap" type="com.entity.Borrow">
         <id column="borrow_id" property="borrowId"/>
         <result column="user_id" property="userId"/>
-        <result column="book_id" property="bookId"/>
+        <result column="book_id" property="bookIds" typeHandler="com.dao.typeHandler.JsonLongListHandler"/>
         <result column="return_time" property="returnTime"/>
         <result column="is_renew" property="isRenew"/>
         <result column="status" property="status"/>

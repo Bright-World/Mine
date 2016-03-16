@@ -1,21 +1,15 @@
-package com.entity;
+package com.response;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by ZhenXi on 2016/1/11.
+ * Created by ZhenXi on 2016/1/14.
  */
-public class User {
+public class UserResponse implements Serializable {
 
     private Long userId;
 
-    //邮箱
-    private String email;
-
-    //密码
-    private String password;
-
-    //昵称
     private String nick;
 
     private Date createDate;
@@ -28,22 +22,6 @@ public class User {
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getNick() {

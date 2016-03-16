@@ -1,27 +1,26 @@
-package com.entity;
+package com.response;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 
 /**
- * Created by ZhenXi on 2016/1/11.
+ * Created by ZhenXi on 2016/1/14.
  */
-public class Borrow {
+public class BorrowResponse implements Serializable {
+
     private Long borrowId;
 
-    //用户
     private Long userId;
 
-    //图书
-    private List<Long> bookIds;
+    private String nick;
 
-    //还书时间
+    private Map<Long, String> book;
+
     private Date returnTime;
 
-    //是否续借过
     private Integer isRenew;
 
-    //状态
     private Integer status;
 
     private Date createDate;
@@ -44,12 +43,20 @@ public class Borrow {
         this.userId = userId;
     }
 
-    public List<Long> getBookIds() {
-        return bookIds;
+    public String getNick() {
+        return nick;
     }
 
-    public void setBookIds(List<Long> bookIds) {
-        this.bookIds = bookIds;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public Map<Long, String> getBook() {
+        return book;
+    }
+
+    public void setBook(Map<Long, String> book) {
+        this.book = book;
     }
 
     public Date getReturnTime() {

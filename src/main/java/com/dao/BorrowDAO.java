@@ -13,6 +13,8 @@ public interface BorrowDAO {
 
     public List<Borrow> getBorrows(Integer cursor, Integer offset);
 
+    public Borrow getBorrowById(Long borrowId);
+
     public List<Borrow> getBorrowByUserId(Long userId, Integer cursor, Integer offset);
 
     public Long returnBook(Long borrowId, Integer status);

@@ -34,6 +34,11 @@ public class BorrowDAOImpl extends BaseDAO implements BorrowDAO {
     }
 
     @Override
+    public Borrow getBorrowById(Long borrowId) {
+        return borrowMapper.getBorrowById(borrowId);
+    }
+
+    @Override
     public List<Borrow> getBorrowByUserId(Long userId, Integer cursor, Integer offset) {
         return borrowMapper.getBorrowByUserId(userId, cursor, offset);
     }

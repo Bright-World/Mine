@@ -4,6 +4,7 @@
     <resultMap id="userMap" type="com.entity.User">
         <id column="user_id" property="userId"/>
         <result column="email" property="email"/>
+        <result column="nick" property="nick"/>
         <result column="password" property="password"/>
         <result column="create_date" property="createDate"/>
         <result column="modified_date" property="modifiedDate"/>
@@ -11,26 +12,25 @@
 
     <resultMap id="userInfoMap" type="com.entity.UserInfo">
         <id column="user_id" property="userId"/>
-        <result column="nick" property="nick"/>
         <result column="name" property="name"/>
         <result column="desc" property="desc"/>
         <result column="birthday" property="birthday"/>
         <result column="borrow_num" property="borrowNum"/>
         <result column="create_date" property="createDate"/>
-        <result column="modified_date" property="modified_date"/>
+        <result column="modified_date" property="modifiedDate"/>
     </resultMap>
 
     <update id="updateUserInfo" parameterType="com.entity.UserInfo">
-        update user
+        update user_info
         <set>
-            <if test="nick != null">
-                nick = #{nick},
-            </if>
             <if test="name != null">
-                name = #{name},
+                `name` = #{name},
             </if>
             <if test="desc != null">
                 `desc` = #{desc},
+            </if>
+            <if test="borrowNum !=null">
+                borrow_num = #{borrowNum},
             </if>
             <if test="birthday != null">
                 birthday = #{birthday},

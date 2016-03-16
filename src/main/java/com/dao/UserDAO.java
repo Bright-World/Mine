@@ -12,11 +12,15 @@ public interface UserDAO {
 
     public Long changePwd(String password, Long userId);
 
+    public Long updateUser(String nick, Long userId);
+
     public Long addUserInfo(UserInfo userInfo);
 
     public Long updateUserInfo(UserInfo userInfo);
 
     public String getUserByEmail(String email);
+
+    public User getUserById(Long userId);
 
     public User getUser(String email, String password);
 

@@ -4,6 +4,7 @@ import com.dao.BookDAO;
 import com.dao.mapper.BookMapper;
 import com.entity.Book;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -23,6 +24,7 @@ public class BookDAOImpl extends BaseDAO implements BookDAO {
     private BookMapper bookMapper;
 
     @Override
+    @Transactional
     public Long addBook(Book book){
         book.setBookId(getSequence());
         if(bookMapper.addBook(book) == 0){
@@ -33,7 +35,7 @@ public class BookDAOImpl extends BaseDAO implements BookDAO {
 
     @Override
     public Long updateBook(Book book) {
-        return bookMapper.updateBook(book) == 0 ? 0l : book.getBookId();
+        return bookMapper.updateBook(book) == 0 ? 0 : book.getBookId();
     }
 
     @Override
@@ -52,7 +54,12 @@ public class BookDAOImpl extends BaseDAO implements BookDAO {
     }
 
     @Override
-    public Integer incrBorrowNum(Long bookId, Integer num) {
-        return bookMapper.incrBorrowNum(bookId, num) == 0 ? 0 : num;
+    public Long incrTimes(Long bookId) {
+        return bookMapper.incrTimes(bookId) == 0 ? 0 : bookId;
+    }
+
+    @Override
+    public Long delBook(Long bookId) {
+        return bookMapper.delBook(bookId) == 0 ? 0 : bookId;
     }
 }

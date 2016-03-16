@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface EvaluationMapper {
 
-    final static String COLUMN_ALL = "evaluation_id,userId,book_id,context,create_date";
+    final static String COLUMN_ALL = "evaluation_id,user_id,book_id,context,create_date";
 
     @Select("select * from evaluation where book_id = #{bookId} order by create_date desc limit #{cursor}, #{offset}")
     @ResultMap("evaluationMap")
