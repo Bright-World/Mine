@@ -22,4 +22,6 @@ public interface BookDAO {
     public Long incrTimes(Long bookId);
 
     public Long delBook(Long bookId);
+
+    public Long changeStatus(Long bookId, Integer status);
 }

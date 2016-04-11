@@ -13,7 +13,7 @@ public interface BorrowBookDAO {
 
     Long renewBook(Long borrowId, Long bookId);
 
-    List<BorrowBook> getBorrowBook(Long borrowId);
+    BorrowBook getBorrowBook(Long borrowId, Long bookId);
 
     Integer addBorrowBooks(Long borrowId, List<Long> bookIds);
 }

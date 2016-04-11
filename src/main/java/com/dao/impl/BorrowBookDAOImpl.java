@@ -23,8 +23,8 @@ public class BorrowBookDAOImpl implements BorrowBookDAO {
     }
 
     @Override
-    public List<BorrowBook> getBorrowBook(Long borrowId) {
-        return borrowBookMapper.getBorrowBook(borrowId);
+    public BorrowBook getBorrowBook(Long borrowId, Long bookId) {
+        return borrowBookMapper.getBorrowBook(borrowId, bookId);
     }
 
     @Override

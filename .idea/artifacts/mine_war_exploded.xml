@@ -9,7 +9,6 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.1.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.1.0.RELEASE" />
-          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.1.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.1.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context-support:4.1.0.RELEASE" />
@@ -34,6 +33,10 @@
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="Maven: org.apache.taglibs:taglibs-standard-impl:1.2.5" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:19.0" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:3.2.5.RELEASE" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:3.2.5.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:3.2.5.RELEASE" />
         </element>
       </element>
       <element id="directory" name="META-INF">

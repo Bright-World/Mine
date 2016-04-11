@@ -62,4 +62,9 @@ public class BookDAOImpl extends BaseDAO implements BookDAO {
     public Long delBook(Long bookId) {
         return bookMapper.delBook(bookId) == 0 ? 0 : bookId;
     }
+
+    @Override
+    public Long changeStatus(Long bookId, Integer status) {
+        return bookMapper.changeStatus(bookId, status) == 0 ? 0 : bookId;
+    }
 }

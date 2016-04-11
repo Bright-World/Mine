@@ -23,4 +23,9 @@ public interface Const {
         final int EVALUATION = 3;
         final int CATEGORY = 4;
     }
+
+    interface bookStatus{
+        final int CAN_BORROW = 0;
+        final int ON_BORROW = 1;
+    }
 }

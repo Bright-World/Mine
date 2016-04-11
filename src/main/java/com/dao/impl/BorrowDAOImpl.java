@@ -43,7 +43,7 @@ public class BorrowDAOImpl extends BaseDAO implements BorrowDAO {
         return borrowMapper.getBorrowByUserId(userId, cursor, offset);
     }
 
-    @Override
+    /*@Override
     public Long returnBook(Long borrowId, Integer status) {
         return borrowMapper.returnBook(borrowId, status) == 0 ? 0l : borrowId;
     }
@@ -51,7 +51,7 @@ public class BorrowDAOImpl extends BaseDAO implements BorrowDAO {
     @Override
     public Long renew(Long borrowId) {
         return borrowMapper.renew(borrowId) == 0 ? 0l : borrowId;
-    }
+    }*/
 
     @Override
     public Long delBorrow(Long borrowId) {

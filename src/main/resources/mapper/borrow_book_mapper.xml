@@ -5,6 +5,7 @@
         <result column="borrow_id" property="borrowId"/>
         <result column="book_id" property="bookId"/>
         <result column="status" property="status"/>
+        <result column="is_renew" property="isRenew"/>
         <result column="create_date" property="createDate"/>
         <result column="modified_date" property="modifiedDate"/>
     </resultMap>

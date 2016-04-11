@@ -51,4 +51,23 @@
         </set>
         where book_id = #{bookId}
     </update>
+
+    <select id="searchBook" parameterType="com.entity.Book" resultMap="bookMap">
+        select * from book
+        <where>
+            1 = 1
+            <if test="name != null">
+                and name like #{name}
+            </if>
+            <if test="categoryId != null">
+                and category_id = #{categoryId}
+            </if>
+            <if test="author != null">
+                and author like #{author}
+            </if>
+            <if test="isbn != null">
+                and isbn like #{isbn}
+            </if>
+        </where>
+    </select>
 </mapper>

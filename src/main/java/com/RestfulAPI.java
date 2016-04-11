@@ -146,13 +146,13 @@ public class RestfulAPI {
         return borrowService.renew(borrowId, bookId);
     }
 
-    /*@RequestMapping(value = "/returnBook", method = RequestMethod.PUT)
-    public Result returnBook(@RequestParam Long borrowId) {
-
-    }*/
+    @RequestMapping(value = "/returnBook", method = RequestMethod.GET)
+    public Result returnBook(@RequestParam Long borrowId, @RequestParam Long bookId) {
+        return borrowService.returnBook(borrowId, bookId);
+    }
 
     @RequestMapping(value = "/delRes/{resType}", method = RequestMethod.DELETE)
-    public Result delRes(@PathVariable Integer resType, @RequestParam Long id) {
+    public Result delRes(@PathVariable Integer resType, @RequestBody Long id) {
         switch (resType) {
             case Const.ResType.BOOK : {
                 return bookService.delBook(id);

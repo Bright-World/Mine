@@ -17,7 +17,7 @@ public interface BorrowService {
 
     public Result<List<BorrowResponse>> getBorrowByUserId(Long userId, Integer page);
 
-    public Result returnBook(Long borrowId);
+    public Result returnBook(Long borrowId, Long bookId);
 
     public Result renew(Long borrowId, Long bookId);
 

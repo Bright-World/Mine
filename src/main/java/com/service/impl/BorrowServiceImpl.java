@@ -5,6 +5,7 @@ import com.dao.BorrowBookDAO;
 import com.dao.BorrowDAO;
 import com.dao.UserDAO;
 import com.entity.Borrow;
+import com.entity.BorrowBook;
 import com.entity.UserInfo;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
@@ -56,6 +57,7 @@ public class BorrowServiceImpl implements BorrowService {
         }
         for (Long id : borrow.getBookIds()) {
             bookDAO.incrTimes(id);
+            bookDAO.changeStatus(id, Const.bookStatus.ON_BORROW);
         }
 
         borrowBookDAO.addBorrowBooks(borrowId, borrow.getBookIds());
@@ -100,19 +102,21 @@ public class BorrowServiceImpl implements BorrowService {
 
     @Override
     @Transactional
-    public Result returnBook(Long borrowId) {
-        Borrow borrow = borrowDAO.getBorrowById(borrowId);
+    public Result returnBook(Long borrowId, Long bookId) {
+        BorrowBook borrowBook = borrowBookDAO.getBorrowBook(borrowId, bookId);
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(borrow.getCreateDate());
-        calendar.set(Calendar.DAY_OF_YEAR, borrow.getIsRenew() == 0 ? Const.BorrwDay.NO_RENEW : Const.BorrwDay.NO_RENEW + Const.BorrwDay.RENEW);
+        calendar.setTime(borrowBook.getCreateDate());
+        calendar.set(Calendar.DAY_OF_YEAR, borrowBook.getIsRenew() == 0 ? Const.BorrwDay.NO_RENEW : Const.BorrwDay.NO_RENEW + Const.BorrwDay.RENEW);
         if (calendar.getTime().before(new Date())) {
-            borrowId = borrowDAO.returnBook(borrowId, Const.Return.BEFORE);
+            borrowId = borrowBookDAO.returnBook(borrowId, bookId, Const.Return.BEFORE);
         }else {
-            borrowId = borrowDAO.returnBook(borrowId, Const.Return.AFTER);
+            borrowId = borrowBookDAO.returnBook(borrowId, bookId, Const.Return.AFTER);
         }
         if (borrowId == 0) {
             return new Result(ErrorCodeEnum.UPDATE_ERROR);
         }
+
+        bookDAO.changeStatus(bookId, Const.bookStatus.CAN_BORROW);
         return new Result(borrowId);
     }
 

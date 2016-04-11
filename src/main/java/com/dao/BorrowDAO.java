@@ -17,9 +17,9 @@ public interface BorrowDAO {
 
     public List<Borrow> getBorrowByUserId(Long userId, Integer cursor, Integer offset);
 
-    public Long returnBook(Long borrowId, Integer status);
+   /* public Long returnBook(Long borrowId, Integer status);
 
-    public Long renew(Long borrowId);
+    public Long renew(Long borrowId);*/
 
     public Long delBorrow(Long borrowId);
 }

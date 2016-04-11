@@ -15,11 +15,11 @@ public interface BookMapper {
     @Insert("insert into book(" + COLUMN_ALL + ") values(#{bookId}, #{name}, #{categoryId}, #{author, typeHandler=com.dao.typeHandler.JsonListHandler}, #{publisher}, #{isbn}, #{pubDate}, #{desc}, #{price}, #{pic, typeHandler=com.dao.typeHandler.JsonListHandler}, now(), now())")
     int addBook(Book book);
 
-    @Select("select * from book order by times, modified_date desc limit #{cursor}, #{offset}")
+    @Select("select * from book where status = 0 order by times, modified_date desc limit #{cursor}, #{offset}")
     @ResultMap("bookMap")
     List<Book> getBooksOrderByBorrowNum(@Param("cursor")Integer cursor, @Param("offset")Integer offset);
 
-    @Select("select * from book order by modified_date desc limit #{cursor}, #{offset}")
+    @Select("select * from book where status = 0 order by modified_date desc limit #{cursor}, #{offset}")
     @ResultMap("bookMap")
     List<Book> getBooksOrderByModifiedDate(@Param("cursor")Integer cursor, @Param("offset")Integer offset);
 
@@ -34,4 +34,7 @@ public interface BookMapper {
 
     @Delete("delete from book where book_id = #{bookId}")
     int delBook(Long bookId);
+
+    @Update("update book set status = #{status} where book_id = #{bookId}")
+    int changeStatus(@Param("bookId")Long bookId, @Param("status")Integer status);
 }

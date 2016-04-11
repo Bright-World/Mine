@@ -14,6 +14,8 @@ public class BorrowBook implements Serializable {
 
     private Integer status;
 
+    private Integer isRenew;
+
     private Date createDate;
 
     private Date modifiedDate;
@@ -38,8 +40,17 @@ public class BorrowBook implements Serializable {
         return status;
     }
 
+    public Integer getIsRenew() {
+        return isRenew;
+    }
+
+    public void setIsRenew(Integer isRenew) {
+        this.isRenew = isRenew;
+    }
+
     public void setStatus(Integer status) {
         this.status = status;
+
     }
 
     public Date getCreateDate() {

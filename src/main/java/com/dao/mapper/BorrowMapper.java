@@ -27,11 +27,11 @@ public interface BorrowMapper {
     @ResultMap("borrowMap")
     List<Borrow> getBorrowByUserId(@Param("userId")Long userId, @Param("cursor")Integer cursor, @Param("offset")Integer offset);
 
-    @Update("update borrow set return_date = now(), status = #{status} where borrow_id = #{borrowId}")
+    /*@Update("update borrow set return_date = now(), status = #{status} where borrow_id = #{borrowId}")
     int returnBook(@Param("borrowId")Long borrowId, @Param("status")Integer status);
 
     @Update("update borrow set is_renew = 1 where borrow_id = #{borrowId}")
-    int renew(Long borrowId);
+    int renew(Long borrowId);*/
 
     @Delete("delete from borrow where borrow_id = #{borrowId}")
     int delBorrow(Long borrowId);
