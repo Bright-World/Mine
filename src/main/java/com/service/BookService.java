@@ -22,4 +22,6 @@ public interface BookService {
     Result<BookResponse> getBookById(Long bookId);
 
     Result delBook(Long bookId);
+
+    Result<List<BookResponse>> searchBook(Integer flag, String key, Integer page);
 }

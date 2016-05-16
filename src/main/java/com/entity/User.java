@@ -18,6 +18,9 @@ public class User {
     //昵称
     private String nick;
 
+    //角色
+    private Integer role;
+
     private Date createDate;
 
     private Date modifiedDate;
@@ -52,6 +55,14 @@ public class User {
 
     public void setNick(String nick) {
         this.nick = nick;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
     }
 
     public Date getCreateDate() {

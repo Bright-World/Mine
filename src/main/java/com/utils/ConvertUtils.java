@@ -65,6 +65,7 @@ public class ConvertUtils {
         UserResponse userResponse = new UserResponse();
         userResponse.setUserId(user.getUserId());
         userResponse.setNick(user.getNick());
+        userResponse.setRole(user.getRole());
         userResponse.setCreateDate(user.getCreateDate());
         userResponse.setModifiedDate(user.getModifiedDate());
         return userResponse;

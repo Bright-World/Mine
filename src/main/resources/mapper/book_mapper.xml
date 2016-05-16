@@ -13,6 +13,8 @@
         <result column="price" property="price"/>
         <result column="times" property="times"/>
         <result column="pic" property="pic" typeHandler="com.dao.typeHandler.JsonListHandler"/>
+        <result column="remark" property="remark"/>
+        <result column="status" property="status"/>
         <result column="create_date" property="createDate"/>
         <result column="modified_date" property="modifiedDate"/>
     </resultMap>
@@ -52,7 +54,7 @@
         where book_id = #{bookId}
     </update>
 
-    <select id="searchBook" parameterType="com.entity.Book" resultMap="bookMap">
+    <!--<select id="searchBook" parameterType="com.entity.Book" resultMap="bookMap">
         select * from book
         <where>
             1 = 1
@@ -69,5 +71,22 @@
                 and isbn like #{isbn}
             </if>
         </where>
+    </select>-->
+
+    <select id="searchBook" resultMap="bookMap">
+        select * from book where
+        <if test="flag == 1">
+            name like #{key}
+        </if>
+        <if test="flag == 2">
+            category_id in (select category_id from category where `name` like #{key})
+        </if>
+        <if test="flag == 3">
+            author like #{key}
+        </if>
+        <if test="flag == 4">
+            publisher like #{key}
+        </if>
+        limit #{cursor}, #{offset}
     </select>
 </mapper>

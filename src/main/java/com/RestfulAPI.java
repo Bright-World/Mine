@@ -50,8 +50,8 @@ public class RestfulAPI {
     }
 
     @RequestMapping(value = "/searchBook", method = RequestMethod.GET)
-    public Result<List<BookResponse>> searchBook() {
-        return null;
+    public Result<List<BookResponse>> searchBook(@RequestParam Integer flag, @RequestParam String key, @RequestParam Integer page) {
+        return bookService.searchBook(flag, key, page);
     }
 
     @RequestMapping(value = "/getBookById", method = RequestMethod.GET)

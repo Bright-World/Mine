@@ -30,7 +30,10 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             return new Result(ErrorCodeEnum.NO_USER);
         }
-        return new Result(user);
+        if (!user.getPassword().equals(userRequest.getPassword())) {
+            return new Result(ErrorCodeEnum.ERROR_USER);
+        }
+        return new Result(ConvertUtils.convert(user));
     }
 
     @Override

@@ -15,6 +15,7 @@ import com.utils.ConvertUtils;
 import com.utils.ErrorCodeEnum;
 import com.utils.PageUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -75,15 +76,18 @@ public class BookServiceImpl implements BookService {
     @Override
     public Result<BookResponse> getBookById(Long bookId) {
         BookResponse bookResponse = ConvertUtils.convert(bookDAO.getBookById(bookId));
-        bookResponse.setEvaluations(Lists.transform(evaluationDAO.getEvaluationByBookId(bookId, 0, PageUtils.offset), new Function<Evaluation, EvaluationResponse>() {
-            @Override
-            public EvaluationResponse apply(Evaluation evaluation) {
-                EvaluationResponse evaluationResponse = ConvertUtils.convert(evaluation);
-                evaluationResponse.setNick(userDAO.getUserById(evaluation.getUserId()).getNick());
-                evaluationResponse.setBookName(bookDAO.getBookById(evaluation.getBookId()).getName());
-                return evaluationResponse;
-            }
-        }));
+        List<Evaluation> evaluations = evaluationDAO.getEvaluationByBookId(bookId, 0, PageUtils.offset);
+        if(!CollectionUtils.isEmpty(evaluations)) {
+            bookResponse.setEvaluations(Lists.transform(evaluationDAO.getEvaluationByBookId(bookId, 0, PageUtils.offset), new Function<Evaluation, EvaluationResponse>() {
+                @Override
+                public EvaluationResponse apply(Evaluation evaluation) {
+                    EvaluationResponse evaluationResponse = ConvertUtils.convert(evaluation);
+                    evaluationResponse.setNick(userDAO.getUserById(evaluation.getUserId()).getNick());
+                    evaluationResponse.setBookName(bookDAO.getBookById(evaluation.getBookId()).getName());
+                    return evaluationResponse;
+                }
+            }));
+        }
         return new Result<>(bookResponse);
     }
 
@@ -93,5 +97,15 @@ public class BookServiceImpl implements BookService {
             return new Result(ErrorCodeEnum.DELETE_ERROR);
         }
         return new Result(bookId);
+    }
+
+    @Override
+    public Result<List<BookResponse>> searchBook(Integer flag, String key, Integer page) {
+        return new Result<>(Lists.transform(bookDAO.searchBook(flag, key, PageUtils.getCursor(page), PageUtils.offset), new Function<Book, BookResponse>() {
+            @Override
+            public BookResponse apply(Book book) {
+                return ConvertUtils.convert(book);
+            }
+        }));
     }
 }

@@ -12,7 +12,7 @@ public interface Const {
         final int AFTER = 2;
     }
 
-    interface BorrwDay {
+    interface BorrowDay {
         final int NO_RENEW = 30;
         final int RENEW = 15;
     }
@@ -24,7 +24,7 @@ public interface Const {
         final int CATEGORY = 4;
     }
 
-    interface bookStatus{
+    interface BookStatus {
         final int CAN_BORROW = 0;
         final int ON_BORROW = 1;
     }

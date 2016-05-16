@@ -17,6 +17,9 @@ public class UserInfo {
     //生日
     private Date birthday;
 
+    //电话号码
+    private String phone;
+
     //借书数量
     private Integer borrowNum;
 
@@ -54,6 +57,14 @@ public class UserInfo {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Integer getBorrowNum() {

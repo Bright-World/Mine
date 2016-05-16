@@ -9,8 +9,9 @@ public enum ErrorCodeEnum {
     UPDATE_ERROR(9002, "更新出错"),
     DELETE_ERROR(9003, "删除出错"),
 
-    NO_USER(1001, "用户名密码错误"),
+    ERROR_USER(1001, "用户名密码错误"),
     EXIST_USER(1002, "用户已存在"),
+    NO_USER(1003, "用户不存在"),
 
     OUT_OF_NUM(2001, "超出数量限制"),
 

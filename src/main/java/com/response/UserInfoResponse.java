@@ -18,6 +18,8 @@ public class UserInfoResponse implements Serializable {
 
     private Date birthday;
 
+    private String phone;
+
     private Integer borrowNum;
 
     private Date createDate;
@@ -62,6 +64,14 @@ public class UserInfoResponse implements Serializable {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Integer getBorrowNum() {

@@ -9,7 +9,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            classpath:ApplicationContext*.xml
+            classpath:ApplicationContext.xml
         </param-value>
     </context-param>
 
@@ -29,13 +29,23 @@
             <param-value>UTF-8</param-value>
         </init-param>
     </filter>
+
     <filter-mapping>
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- spring security -->
     <filter>
+        <filter-name>cors</filter-name>
+        <filter-class>com.utils.SpringCrossOriginResourceSharingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>cors</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- spring security -->
+    <!--<filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
@@ -43,7 +53,7 @@
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping>-->
 
     <!-- spring -->
     <servlet>
@@ -63,7 +73,7 @@
 
 
     <welcome-file-list>
-        <welcome-file>web/login.jsp</welcome-file>
+        <welcome-file>web/main.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

@@ -67,4 +67,9 @@ public class BookDAOImpl extends BaseDAO implements BookDAO {
     public Long changeStatus(Long bookId, Integer status) {
         return bookMapper.changeStatus(bookId, status) == 0 ? 0 : bookId;
     }
+
+    @Override
+    public List<Book> searchBook(Integer flag, String key, Integer cursor, Integer offset) {
+        return bookMapper.searchBook(flag, "%" + key + "%", cursor, offset);
+    }
 }

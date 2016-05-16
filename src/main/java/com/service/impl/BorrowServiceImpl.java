@@ -57,7 +57,7 @@ public class BorrowServiceImpl implements BorrowService {
         }
         for (Long id : borrow.getBookIds()) {
             bookDAO.incrTimes(id);
-            bookDAO.changeStatus(id, Const.bookStatus.ON_BORROW);
+            bookDAO.changeStatus(id, Const.BookStatus.ON_BORROW);
         }
 
         borrowBookDAO.addBorrowBooks(borrowId, borrow.getBookIds());
@@ -106,7 +106,7 @@ public class BorrowServiceImpl implements BorrowService {
         BorrowBook borrowBook = borrowBookDAO.getBorrowBook(borrowId, bookId);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(borrowBook.getCreateDate());
-        calendar.set(Calendar.DAY_OF_YEAR, borrowBook.getIsRenew() == 0 ? Const.BorrwDay.NO_RENEW : Const.BorrwDay.NO_RENEW + Const.BorrwDay.RENEW);
+        calendar.set(Calendar.DAY_OF_YEAR, borrowBook.getIsRenew() == 0 ? Const.BorrowDay.NO_RENEW : Const.BorrowDay.NO_RENEW + Const.BorrowDay.RENEW);
         if (calendar.getTime().before(new Date())) {
             borrowId = borrowBookDAO.returnBook(borrowId, bookId, Const.Return.BEFORE);
         }else {
@@ -116,7 +116,7 @@ public class BorrowServiceImpl implements BorrowService {
             return new Result(ErrorCodeEnum.UPDATE_ERROR);
         }
 
-        bookDAO.changeStatus(bookId, Const.bookStatus.CAN_BORROW);
+        bookDAO.changeStatus(bookId, Const.BookStatus.CAN_BORROW);
         return new Result(borrowId);
     }
 

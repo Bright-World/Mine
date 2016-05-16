@@ -37,4 +37,6 @@ public interface BookMapper {
 
     @Update("update book set status = #{status} where book_id = #{bookId}")
     int changeStatus(@Param("bookId")Long bookId, @Param("status")Integer status);
+
+    List<Book> searchBook(@Param("flag") Integer flag, @Param("key") String key, @Param("cursor") Integer cursor, @Param("offset") Integer offset);
 }

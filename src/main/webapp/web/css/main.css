@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.name{
+    float: left;
+    margin: auto 10px;
+    font-size: 20px;
+    font-family: "楷体";
+}
+.num {
+    float: right;
+    margin-right: 10px;
+    color: darkgrey;
+}
+#content button {
+    margin-left: 20px;
+    border: none;
+    background-color: aliceblue;
+}
+ol li {
+    margin-left: 25px;
+    margin-top: 10px;
+}

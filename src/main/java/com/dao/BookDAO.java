@@ -24,4 +24,6 @@ public interface BookDAO {
     public Long delBook(Long bookId);
 
     public Long changeStatus(Long bookId, Integer status);
+
+    public List<Book> searchBook(Integer flag, String key, Integer cursor, Integer offset);
 }

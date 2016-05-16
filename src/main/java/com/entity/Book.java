@@ -39,6 +39,12 @@ public class Book {
     //借阅次数
     private Integer times;
 
+    //图书状态 0 废弃 1 正常 2 借出
+    private Integer status;
+
+    //备注
+    private String remark;
+
     private Date createDate;
 
     private Date modifiedDate;
@@ -129,6 +135,22 @@ public class Book {
 
     public void setTimes(Integer times) {
         this.times = times;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public Date getCreateDate() {

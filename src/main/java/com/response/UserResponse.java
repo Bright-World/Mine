@@ -12,6 +12,8 @@ public class UserResponse implements Serializable {
 
     private String nick;
 
+    private Integer role;
+
     private Date createDate;
 
     private Date modifiedDate;
@@ -30,6 +32,14 @@ public class UserResponse implements Serializable {
 
     public void setNick(String nick) {
         this.nick = nick;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
     }
 
     public Date getCreateDate() {

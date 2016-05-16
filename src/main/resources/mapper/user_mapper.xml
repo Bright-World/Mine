@@ -5,6 +5,7 @@
         <id column="user_id" property="userId"/>
         <result column="email" property="email"/>
         <result column="nick" property="nick"/>
+        <result column="role" property="role"/>
         <result column="password" property="password"/>
         <result column="create_date" property="createDate"/>
         <result column="modified_date" property="modifiedDate"/>
@@ -15,6 +16,7 @@
         <result column="name" property="name"/>
         <result column="desc" property="desc"/>
         <result column="birthday" property="birthday"/>
+        <result column="phone" property="phone"/>
         <result column="borrow_num" property="borrowNum"/>
         <result column="create_date" property="createDate"/>
         <result column="modified_date" property="modifiedDate"/>
@@ -34,6 +36,9 @@
             </if>
             <if test="birthday != null">
                 birthday = #{birthday},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
             </if>
             modified_date = now()
         </set>

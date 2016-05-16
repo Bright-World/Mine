@@ -18,9 +18,13 @@ public class UserRequest implements Serializable {
 
     private String name;
 
+    private Integer role;
+
     private String desc;
 
     private Date birthday;
+
+    private String phone;
 
     private String pic;
 
@@ -64,6 +68,14 @@ public class UserRequest implements Serializable {
         this.name = name;
     }
 
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
     public String getDesc() {
         return desc;
     }
@@ -78,6 +90,14 @@ public class UserRequest implements Serializable {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPic() {

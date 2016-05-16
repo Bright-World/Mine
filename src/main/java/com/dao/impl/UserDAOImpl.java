@@ -50,7 +50,7 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 
     @Override
     public String getUserByEmail(String email) {
-        return userMapper.getUserByEmail(email);
+        return userMapper.getEmail(email);
     }
 
     @Override
@@ -60,7 +60,8 @@ public class UserDAOImpl extends BaseDAO implements UserDAO {
 
     @Override
     public User getUser(String email, String password) {
-        return userMapper.getUser(email, password);
+        //return userMapper.getUser(email, password);
+        return userMapper.getUserByEmail(email);
     }
 
     @Override

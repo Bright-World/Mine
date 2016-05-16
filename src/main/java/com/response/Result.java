@@ -13,7 +13,7 @@ import java.io.Serializable;
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class Result<T> implements Serializable {
 
-    private Integer status = 0;
+    private Integer status = 1;
 
     private String msg;
 
