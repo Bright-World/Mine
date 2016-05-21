@@ -23,5 +23,9 @@ public interface BookService {
 
     Result delBook(Long bookId);
 
-    Result<List<BookResponse>> searchBook(Integer flag, String key, Integer page);
+    Result<List<BookResponse>> searchBook(Integer flag, String key, Integer page, Integer order);
+
+    Result<List<BookResponse>> getBooks(String key, Integer page, Integer order);
+
+    Result<List<BookResponse>> getAllBooks(Integer page, Integer order);
 }

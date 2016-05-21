@@ -25,5 +25,9 @@ public interface BookDAO {
 
     public Long changeStatus(Long bookId, Integer status);
 
-    public List<Book> searchBook(Integer flag, String key, Integer cursor, Integer offset);
+    public List<Book> searchBook(Integer flag, String key, Integer cursor, Integer offset, Integer order);
+
+    public List<Book> getBooks(String key, Integer cursor, Integer offset, Integer order);
+
+    public List<Book> getAllBooks(Integer cursor, Integer offset, Integer order);
 }

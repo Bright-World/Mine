@@ -18,6 +18,8 @@
         <result column="birthday" property="birthday"/>
         <result column="phone" property="phone"/>
         <result column="borrow_num" property="borrowNum"/>
+        <result column="question" property="question"/>
+        <result column="answer" property="answer"/>
         <result column="create_date" property="createDate"/>
         <result column="modified_date" property="modifiedDate"/>
     </resultMap>
@@ -39,6 +41,12 @@
             </if>
             <if test="phone != null">
                 phone = #{phone},
+            </if>
+            <if test="question != null">
+                question = #{question},
+            </if>
+            <if test="answer != null">
+                answer = #{answer},
             </if>
             modified_date = now()
         </set>

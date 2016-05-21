@@ -5,14 +5,14 @@
         <id column="book_id" property="bookId"/>
         <result column="name" property="name"/>
         <result column="category_id" property="categoryId"/>
-        <result column="author" property="author" typeHandler="com.dao.typeHandler.JsonListHandler"/>
+        <result column="author" property="author"/>
         <result column="publisher" property="publisher"/>
         <result column="isbn" property="isbn"/>
         <result column="pub_date" property="pubDate"/>
         <result column="desc" property="desc"/>
         <result column="price" property="price"/>
         <result column="times" property="times"/>
-        <result column="pic" property="pic" typeHandler="com.dao.typeHandler.JsonListHandler"/>
+        <result column="pic" property="pic"/>
         <result column="remark" property="remark"/>
         <result column="status" property="status"/>
         <result column="create_date" property="createDate"/>
@@ -29,7 +29,7 @@
                 category_id = #{categoryId},
             </if>
             <if test="author != null">
-                author = #{author,typeHandler=com.dao.typeHandler.JsonListHandler},
+                author = #{author},
             </if>
             <if test="publisher != null">
                 publisher = #{publisher},
@@ -47,7 +47,7 @@
                 price = #{price},
             </if>
             <if test="pic != null">
-                pic = #{pic, typeHandler=com.dao.typeHandler.JsonListHandler},
+                pic = #{pic},
             </if>
             modified_date = now()
         </set>
@@ -75,8 +75,11 @@
 
     <select id="searchBook" resultMap="bookMap">
         select * from book where
-        <if test="flag == 1">
+        <if test="flag == 0">
             name like #{key}
+        </if>
+        <if test="flag == 1">
+            isbn like #{key}
         </if>
         <if test="flag == 2">
             category_id in (select category_id from category where `name` like #{key})
@@ -87,6 +90,7 @@
         <if test="flag == 4">
             publisher like #{key}
         </if>
+        order by #{order} desc
         limit #{cursor}, #{offset}
     </select>
 </mapper>

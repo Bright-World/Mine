@@ -13,7 +13,7 @@ public interface UserService {
 
     public Result getUser(UserRequest userRequest);
 
-    public Result addUser(List<String> snos);
+    public Result addUser(List<UserRequest> userRequests);
 
     public Result updateUser(UserRequest userRequest);
 
@@ -22,4 +22,8 @@ public interface UserService {
     public Result updateUserInfo(UserRequest userRequest);
 
     public Result<UserInfoResponse> getUserInfo(Long userId);
+
+    public Result getPwd(String email);
+
+    public Result<UserInfoResponse> getUserInfoByEmail(String email);
 }

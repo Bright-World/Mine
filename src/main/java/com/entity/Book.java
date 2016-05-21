@@ -1,7 +1,6 @@
 package com.entity;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by ZhenXi on 2016/1/11.
@@ -19,10 +18,10 @@ public class Book {
     private Integer price;
 
     //图片
-    private List<String> pic;
+    private String pic;
 
     //作者
-    private List<String> author;
+    private String author;
 
     //出版社
     private String publisher;
@@ -81,19 +80,19 @@ public class Book {
         this.price = price;
     }
 
-    public List<String> getPic() {
+    public String getPic() {
         return pic;
     }
 
-    public void setPic(List<String> pic) {
+    public void setPic(String pic) {
         this.pic = pic;
     }
 
-    public List<String> getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(List<String> author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 

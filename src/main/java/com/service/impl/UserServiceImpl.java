@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public Result addUser(List<String> snos) {
+    public Result addUser(List<UserRequest> userRequests) {
         /*if (userDAO.getUser(userRequest.getEmail(), userRequest.getPassword()) != null) {
             return new Result(ErrorCodeEnum.EXIST_USER);
         }
@@ -49,15 +49,19 @@ public class UserServiceImpl implements UserService {
         }
         return new Result(userRequest.getUserId());*/
         int num = 0;
-        for (String sno : snos) {
-            if (userDAO.getUserByEmail(sno) == null) {
+        for (UserRequest userRequest : userRequests) {
+            if (userDAO.getUserByEmail(userRequest.getEmail()) == null) {
                 User user = new User();
-                user.setEmail(sno);
-                user.setPassword(sno);
-                user.setNick(sno);
+                user.setEmail(userRequest.getEmail());
+                user.setPassword(userRequest.getEmail());
+                user.setNick(userRequest.getEmail());
+                user.setRole(userRequest.getRole());
                 Long userId = userDAO.addUser(user);
                 UserInfo userInfo = new UserInfo();
                 userInfo.setUserId(userId);
+                userInfo.setPhone(userRequest.getPhone());
+                userInfo.setQuestion("我的学号是？");
+                userInfo.setAnswer(userRequest.getEmail());
                 if (userId == 0 || userDAO.addUserInfo(userInfo) == 0) {
                     return new Result(ErrorCodeEnum.ADD_ERROR);
                 }
@@ -77,7 +81,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result changePwd(UserRequest userRequest) {
-        if (userDAO.changePwd(userRequest.getPassword(), userRequest.getUserId()) == 0) {
+        if (!userDAO.getUserById(userRequest.getUserId()).getPassword().equals(userRequest.getPassword())) {
+            return new Result(ErrorCodeEnum.EROOR_PASSWORD);
+        }
+        if (userDAO.changePwd(userRequest.getNewPassword(), userRequest.getUserId()) == 0) {
             return new Result(ErrorCodeEnum.UPDATE_ERROR);
         }
         return new Result(userRequest.getUserId());
@@ -93,7 +100,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result<UserInfoResponse> getUserInfo(Long userId) {
-        return new Result<>(ConvertUtils.convert(userDAO.getUserInfo(userId)));
+        UserInfo userInfo = userDAO.getUserInfo(userId);
+        if(userInfo == null) {
+            return new Result<>(ErrorCodeEnum.NO_USER);
+        }
+        return new Result<>(ConvertUtils.convert(userInfo));
+    }
+
+    @Override
+    public Result<UserInfoResponse> getUserInfoByEmail(String email) {
+        User user = userDAO.getUser(email, null);
+        if(user == null){
+            return new Result<>(ErrorCodeEnum.NO_USER);
+        }
+        return new Result<>(ConvertUtils.convert(userDAO.getUserInfo(user.getUserId())));
+    }
+
+    @Override
+    public Result getPwd(String email) {
+        User user = userDAO.getUser(email, null);
+        return new Result(user.getPassword());
     }
 
     private User convertToUser(UserRequest userRequest) {
@@ -110,6 +136,9 @@ public class UserServiceImpl implements UserService {
         userInfo.setName(userRequest.getName());
         userInfo.setDesc(userRequest.getDesc());
         userInfo.setBirthday(userRequest.getBirthday());
+        userInfo.setPhone(userRequest.getPhone());
+        userInfo.setQuestion(userRequest.getQuestion());
+        userInfo.setAnswer(userRequest.getAnswer());
         return userInfo;
     }
 }

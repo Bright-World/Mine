@@ -100,8 +100,28 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Result<List<BookResponse>> searchBook(Integer flag, String key, Integer page) {
-        return new Result<>(Lists.transform(bookDAO.searchBook(flag, key, PageUtils.getCursor(page), PageUtils.offset), new Function<Book, BookResponse>() {
+    public Result<List<BookResponse>> searchBook(Integer flag, String key, Integer page, Integer order) {
+        return new Result<>(Lists.transform(bookDAO.searchBook(flag, key, PageUtils.getCursor(page), PageUtils.offset, order), new Function<Book, BookResponse>() {
+            @Override
+            public BookResponse apply(Book book) {
+                return ConvertUtils.convert(book);
+            }
+        }));
+    }
+
+    @Override
+    public Result<List<BookResponse>> getBooks(String key, Integer page, Integer order) {
+        return new Result<>(Lists.transform(bookDAO.getBooks(key, PageUtils.getCursor(page), PageUtils.offset, order), new Function<Book, BookResponse>() {
+            @Override
+            public BookResponse apply(Book book) {
+                return ConvertUtils.convert(book);
+            }
+        }));
+    }
+
+    @Override
+    public Result<List<BookResponse>> getAllBooks(Integer page, Integer order) {
+        return new Result<>(Lists.transform(bookDAO.getAllBooks(PageUtils.getCursor(page), PageUtils.offset, order), new Function<Book, BookResponse>() {
             @Override
             public BookResponse apply(Book book) {
                 return ConvertUtils.convert(book);

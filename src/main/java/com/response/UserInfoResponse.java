@@ -22,6 +22,10 @@ public class UserInfoResponse implements Serializable {
 
     private Integer borrowNum;
 
+    private String question;
+
+    private String answer;
+
     private Date createDate;
 
     private Date modifiedDate;
@@ -80,6 +84,22 @@ public class UserInfoResponse implements Serializable {
 
     public void setBorrowNum(Integer borrowNum) {
         this.borrowNum = borrowNum;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     public Date getCreateDate() {

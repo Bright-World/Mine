@@ -27,6 +27,7 @@ public class ConvertUtils {
         bookResponse.setPubDate(book.getPubDate());
         bookResponse.setTimes(book.getTimes());
         bookResponse.setPublisher(book.getPublisher());
+        bookResponse.setStatus(book.getStatus());
         return bookResponse;
     }
 
@@ -79,8 +80,11 @@ public class ConvertUtils {
         userInfoResponse.setUserId(userInfo.getUserId());
         userInfoResponse.setName(userInfo.getName());
         userInfoResponse.setDesc(userInfo.getDesc());
+        userInfoResponse.setPhone(userInfo.getPhone());
         userInfoResponse.setBirthday(userInfo.getBirthday());
         userInfoResponse.setBorrowNum(userInfo.getBorrowNum());
+        userInfoResponse.setQuestion(userInfo.getQuestion());
+        userInfoResponse.setAnswer(userInfo.getAnswer());
         userInfoResponse.setCreateDate(userInfo.getCreateDate());
         userInfoResponse.setModifiedDate(userInfo.getModifiedDate());
         return userInfoResponse;

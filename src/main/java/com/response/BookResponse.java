@@ -1,6 +1,7 @@
 package com.response;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import java.util.List;
  * Created by ZhenXi on 2016/1/14.
  */
 public class BookResponse implements Serializable {
+
     private Long bookId;
 
     private String name;
@@ -18,19 +20,21 @@ public class BookResponse implements Serializable {
 
     private Integer price;
 
-    private List<String> pic;
+    private String pic;
 
-    private List<String> author;
+    private String author;
 
     private String publisher;
 
     private String isbn;
 
-    private Date pubDate;
+    private String pubDate;
 
     private String desc;
 
     private Integer times;
+
+    private Integer status;
 
     private List<EvaluationResponse> evaluations;
 
@@ -78,19 +82,19 @@ public class BookResponse implements Serializable {
         this.price = price;
     }
 
-    public List<String> getPic() {
+    public String getPic() {
         return pic;
     }
 
-    public void setPic(List<String> pic) {
+    public void setPic(String pic) {
         this.pic = pic;
     }
 
-    public List<String> getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(List<String> author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
@@ -110,12 +114,12 @@ public class BookResponse implements Serializable {
         this.isbn = isbn;
     }
 
-    public Date getPubDate() {
+    public String getPubDate() {
         return pubDate;
     }
 
     public void setPubDate(Date pubDate) {
-        this.pubDate = pubDate;
+        this.pubDate = new SimpleDateFormat("yyyy-MM-dd").format(pubDate);
     }
 
     public String getDesc() {
@@ -132,6 +136,18 @@ public class BookResponse implements Serializable {
 
     public void setTimes(Integer times) {
         this.times = times;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public void setPubDate(String pubDate) {
+        this.pubDate = pubDate;
     }
 
     public List<EvaluationResponse> getEvaluations() {

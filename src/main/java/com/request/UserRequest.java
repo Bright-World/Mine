@@ -14,6 +14,8 @@ public class UserRequest implements Serializable {
 
     private String password;
 
+    private String newPassword;
+
     private String nick;
 
     private String name;
@@ -27,6 +29,10 @@ public class UserRequest implements Serializable {
     private String phone;
 
     private String pic;
+
+    private String question;
+
+    private String answer;
 
     public Long getUserId() {
         return userId;
@@ -50,6 +56,14 @@ public class UserRequest implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
     }
 
     public String getNick() {
@@ -106,5 +120,21 @@ public class UserRequest implements Serializable {
 
     public void setPic(String pic) {
         this.pic = pic;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 }

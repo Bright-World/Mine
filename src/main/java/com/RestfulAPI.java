@@ -5,10 +5,7 @@ import com.entity.Borrow;
 import com.entity.Category;
 import com.entity.Evaluation;
 import com.request.UserRequest;
-import com.response.BookResponse;
-import com.response.BorrowResponse;
-import com.response.CategoryResponse;
-import com.response.Result;
+import com.response.*;
 import com.service.*;
 import com.utils.Const;
 import com.utils.ErrorCodeEnum;
@@ -50,8 +47,16 @@ public class RestfulAPI {
     }
 
     @RequestMapping(value = "/searchBook", method = RequestMethod.GET)
-    public Result<List<BookResponse>> searchBook(@RequestParam Integer flag, @RequestParam String key, @RequestParam Integer page) {
-        return bookService.searchBook(flag, key, page);
+    public Result<List<BookResponse>> searchBook(@RequestParam Integer flag, @RequestParam String key, @RequestParam Integer page, @RequestParam Integer order) {
+        if(flag == 5) {
+            return bookService.getBooks(key, page, order);
+        }
+        return bookService.searchBook(flag, key, page, order);
+    }
+
+    @RequestMapping(value = "getAllBooks", method = RequestMethod.GET)
+    public Result<List<BookResponse>> getBooks(@RequestParam Integer page, @RequestParam Integer order){
+        return bookService.getAllBooks(page, order);
     }
 
     @RequestMapping(value = "/getBookById", method = RequestMethod.GET)
@@ -75,8 +80,8 @@ public class RestfulAPI {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public Result register(@RequestBody List<String> snos) {
-        return userService.addUser(snos);
+    public Result register(@RequestBody List<UserRequest> userRequests) {
+        return userService.addUser(userRequests);
     }
     /*public Result register(@RequestBody UserRequest userRequest) {
         return userService.addUser(userRequest);
@@ -99,6 +104,16 @@ public class RestfulAPI {
     @RequestMapping(value = "/getUserInfo", method = RequestMethod.GET)
     public Result getUserInfo(@RequestParam Long userId) {
         return userService.getUserInfo(userId);
+    }
+
+    @RequestMapping(value = "getUserInfoByEmail", method = RequestMethod.GET)
+    public Result<UserInfoResponse> getUserInfoByEmail(@RequestParam String email) {
+        return userService.getUserInfoByEmail(email);
+    }
+
+    @RequestMapping(value = "getPassword", method = RequestMethod.GET)
+    public Result getPwd(@RequestParam String email){
+        return userService.getPwd(email);
     }
 
     @RequestMapping(value = "/addCategory", method = RequestMethod.POST)

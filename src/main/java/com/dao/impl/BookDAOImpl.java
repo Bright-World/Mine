@@ -69,7 +69,24 @@ public class BookDAOImpl extends BaseDAO implements BookDAO {
     }
 
     @Override
-    public List<Book> searchBook(Integer flag, String key, Integer cursor, Integer offset) {
-        return bookMapper.searchBook(flag, "%" + key + "%", cursor, offset);
+    public List<Book> searchBook(Integer flag, String key, Integer cursor, Integer offset, Integer order) {
+        return bookMapper.searchBook(flag, "%" + key + "%", cursor, offset, getOrder(order));
+    }
+
+    @Override
+    public List<Book> getBooks(String key, Integer cursor, Integer offset, Integer order) {
+        return bookMapper.getBooks("%" + key + "%", cursor, offset, getOrder(order));
+    }
+
+    @Override
+    public List<Book> getAllBooks(Integer cursor, Integer offset, Integer order) {
+        return bookMapper.getAllBooks(cursor, offset, getOrder(order));
+    }
+
+    private String getOrder(Integer order){
+        if(order == 0) {
+            return "modified_date";
+        }
+        return "times,modified_date";
     }
 }
